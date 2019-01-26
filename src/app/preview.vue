@@ -2,30 +2,30 @@
     <div class="preview_block container">
         <div class="title ">
             <img src="@/assets/img/preview.png" alt="">
-            <span class="word color2">全网预览</span>
-            <span class="subword colorA8B">协议版本:5f38e</span>
+            <span class="word color2">{{$t('preview.title')}}</span>
+            <span class="subword colorA8B">{{$t('preview.version')}}:5f38e</span>
         </div>
         <div class="cont">
             <div class="">
                 <div class="item w20 left">
                     <div class="number color3">{{pageData.accountsTotal | parseNumber}}</div>
-                    <div class="subword colorA8B">账户数量</div>
+                    <div class="subword colorA8B">{{$t('preview.account')}}</div>
                 </div>
                 <div class="item w20 left">
                     <div class="number color3">{{pageData.messageTotal | parseNumber}}</div>
-                    <div class="subword colorA8B">消息数量</div>
+                    <div class="subword colorA8B">{{$t('preview.message')}}</div>
                 </div>
                 <div class="item w20 left">
                     <div class="number color3">{{pageData.messages.tps | parseNumber}}</div>
-                    <div class="subword colorA8B">TPS</div>
+                    <div class="subword colorA8B">{{$t('preview.tps')}}</div>
                 </div>
                 <div class="item w20 left">
                     <div class="number color3">{{pageData.messages.shardnumber | parseNumber}}</div>
-                    <div class="subword colorA8B">节点数量</div>
+                    <div class="subword colorA8B">{{$t('preview.node')}}</div>
                 </div>
                 <div class="item w20 left">
                     <div class="number color3">{{pageData.messages.runtime | fromToday | parseNumber}}</div>
-                    <div class="subword colorA8B">运行天数</div>
+                    <div class="subword colorA8B">{{$t('preview.days')}}</div>
                 </div>
             </div>
         </div>

@@ -18,12 +18,29 @@ Vue.prototype.axios=config.myAxios; //原型中加入axios,方便之后调用cha
 // Vue.config.productionTip = true;
 // Vue.config.productionTip = false;
 // Vue.config.silent = true
+
+/**
+ * 多语言
+ */
+import VueI18n from 'vue-i18n'
+import langEn from "./lang/en"
+import langZh from "./lang/zh"
+Vue.use(VueI18n)
+const i18n = new VueI18n({
+  locale: localStorage.getItem('lang') || "zh-CN",
+  messages: {
+    'en': langEn,
+    'zh-CN': langZh,
+  }
+})
+
 Vue.use(VueClipboard)
 Vue.component('Prompt',prompt)
 new Vue({
 	el: '#app',
 	router,
 	store,
+	i18n,
 	data: function(){
 		return {
 

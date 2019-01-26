@@ -2,11 +2,11 @@
     <div class="charts_block container">
         <div class="row">
             <div class="one col-sm-6 clearfix">
-                <div class="title">过去14天消息数</div>
+                <div class="title">{{$t('charts.titleone')}}</div>
                 <div class="chart  left" id="chartone"></div>
             </div>
             <div class="two col-sm-6 clearfix">
-                <div class="title">过去14天账户数</div>
+                <div class="title">{{$t('charts.titletwo')}}</div>
                 <div class="chart  right" id="charttwo"></div>
             </div>
         </div>

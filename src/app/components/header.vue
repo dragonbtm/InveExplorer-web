@@ -5,12 +5,13 @@
                 <img class="pclogo" src="@/assets/img/logo.png" alt="">
                 <img class="mblogo" src="@/assets/img/moblielogo.png" alt="">
             </a>
-            <a href="javascript:;" class="lan right">
-                EN
+            <a href="javascript:;" class="lan right" @click="changeLang()">
+                <span v-show="lang == 'zh-CN'">EN</span>
+                <span v-show="lang == 'en'">中文</span>
             </a>
             <div class="search right">
                 <input type="text" placeholder="搜索地址、交易、合约、文本、快照" v-model="searchValue">
-                <a href="javascript:;" class="searchBtn" @click="goSearch">搜 索</a>
+                <a href="javascript:;" class="searchBtn" @click="goSearch">{{$t('header.Search')}}</a>
             </div>
         </div>
         <Prompt :title="promptTitle" ref="prompt"></Prompt>
@@ -21,7 +22,8 @@ export default {
     data: function() {
         return {
             searchValue: '',
-            promptTitle:'test'
+            promptTitle:'test',
+            lang:localStorage.getItem('lang') || "zh-CN"
         }
     },
     methods: {
@@ -36,6 +38,18 @@ export default {
                 this.$router.push({
                     path: '/'
                 })
+            }
+        },
+        changeLang(){
+            console.log(this.lang)
+            if(this.lang == "zh-CN"){
+                this.$i18n.locale = "en";
+                localStorage.setItem("lang", 'en');
+                this.lang = 'en'
+            }else if(this.lang == "en"){
+                this.$i18n.locale = "zh-CN";
+                localStorage.setItem("lang", 'zh-CN');
+                this.lang = "zh-CN"
             }
         },
         selectType(type){
