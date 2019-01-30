@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="money">
                                     <span class="color9 s">交易金额：</span>
-                                    <span>{{unit.amount}} </span>
+                                    <span>{{unit.amount / 1e+18}} </span>
                                     <span class="color9 s">INVE</span>
                                 </div>
                             </div>

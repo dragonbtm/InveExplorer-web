@@ -77,7 +77,7 @@
                         <td class="colorA8B">13 mins ago</td>
                         <td><a href="javascript:;" class="color306">{{item.name}}}</a></td>
                         <td>
-                            {{item.value}} <span> ATOM</span>
+                            {{item.value}} <span> atom</span>
                         </td>
                     </tr>
                 </tbody>
