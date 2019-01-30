@@ -1,13 +1,13 @@
-<template>
+<template xmlns:v-clipboard="http://www.w3.org/1999/xhtml">
     <div class="index ">
         <div class="accountDetail_block container">
             <div class="headbox">
                 <div class="title">
                     <div class="word">
                         <span class="word1 color2">快照</span>
-                        <span class="word2 color3">#f5b975ea5d13c518d4087f3f85805f0f5115f586d5eb50dee3255b21f2fb20207</span>
+                        <span class="word2 color3">#{{pageData.hash}}</span>
                     </div>
-                    <a href="javascript:;" class="copy" 
+                    <a href="javascript:;" class="copy"
                         v-clipboard:copy="pageData.hash"
                         v-clipboard:success="onCopy">
                     <img src="@/assets/img/copy.png" alt="">
@@ -23,41 +23,41 @@
                     </div>
                     <div class="item">
                         <p class="conttitle color9"><span>时间：</span></p>
-                        <p class="text color3">16 secs ago (2019/1/12 2:36:59)</p>
+                        <p class="text color3">{{pageData.timestamp | fomatTime}}({{pageData.timestamp | parseTime}})</p>
                     </div>
                     <div class="item">
                         <p class="conttitle color9"><span>发送人：</span></p>
-                        <p class="text color3">TFGyUt7BWRDdNHPvMkYJfXDzd5g5mZEpss</p>
+                        <p class="text color3">{{pageData.fromAddress}}</p>
                     </div>
                     <div class="item">
                         <p class="conttitle color9"><span>快照版本</span></p>
                         <p class="text color3">
-                            <span>FESE34FEFE</span>
+                            <span>{{pageData.snapVersion}}</span>
                         </p>
                     </div>
                     <div class="item">
                         <p class="conttitle color9"><span>前一快照：</span></p>
-                        <p class="text color3">FJDSHFEOW384HF3923H57DHJFKS73F3U3R3</p>
+                        <p class="text color3">{{messageData.preHash}}</p>
                     </div>
                      <div class="item">
                         <p class="conttitle color9"><span>当前快照：</span></p>
-                        <p class="text color3">FJDSHFEOW384HF3923H57DHJFKS73F3U3R3</p>
+                        <p class="text color3">{{pageData.hash}}</p>
                     </div>
                     <div class="item">
                         <p class="conttitle color9"><span>快照点：</span></p>
-                        <p class="text color3">888</p>
+                        <p class="text color3">{{snapshotPoint.msgMaxId}}</p>
                     </div>
                     <div class="item">
                         <p class="conttitle color9"><span>Merkle tree：</span></p>
-                        <p class="text color3">FJDSHFEOW384HF3923H57DHJFKS73F3U3R3</p>
+                        <p class="text color3">{{snapshotPoint.msgHashTreeRoot}}</p>
                     </div>
                     <div class="item">
                         <p class="conttitle color9"><span>手续费总和：</span></p>
-                        <p class="text color3">455,886,874,888.878 INVE</p>
+                        <p class="text color3">{{snapshotPoint.totalFee/1e+18}} INVE</p>
                     </div>
                     <div class="item">
                         <p class="conttitle color9"><span>奖励比率：</span></p>
-                        <p class="text color3">50%</p>
+                        <p class="text color3">{{snapshotPoint.rewardRatio}}%</p>
                     </div>
                 </div>
             </div>
@@ -75,9 +75,9 @@
                 <tbody>
                     <tr v-for="item in listData">
                         <td class="colorA8B">13 mins ago</td>
-                        <td><a href="javascript:;" class="color306">L06778L067838L0678L067838L0678L067838L0678L067838L06</a></td>
+                        <td><a href="javascript:;" class="color306">{{item.name}}}</a></td>
                         <td>
-                            50,000.00 <span> INVE</span>
+                            {{item.value}} <span> ATOM</span>
                         </td>
                     </tr>
                 </tbody>
@@ -89,11 +89,11 @@
 export default {
     data: function() {
         return {
-            listData: [1, 2, 3, 4],
-             pageData:{
-                hash:""
-            },
-             isCopy:false,
+            listData: {},
+            pageData:{},
+            messageData:{},
+            snapshotPoint:{},
+            isCopy:false,
             isShowing:null
         }
     },
@@ -109,26 +109,42 @@ export default {
             let formdata = new FormData();
             formdata.append("hash", hash);
             this.axios.post('messagesinfo', formdata).then((res) => {
-                console.log(res)
-                // this.dataList = res.data.page.list;
-                // if (res.data.page.list.length == 0) {
-                //     this.total = 1;
-                // } else {
-                //     this.total = res.data.page.totalPage;
-                // }
 
+
+                let messageData = JSON.parse(res.data.data.message);
+                let listData = [];
+
+                this.pageData = res.data.data;
+                this.messageData = messageData;
+                this.snapshotPoint = messageData.snapshotPoint;
+
+
+
+                Object.keys(messageData.snapshotPoint.contributions).forEach(function(key){
+                    // console.log(key);
+                    let obj = {name:key,value:messageData.snapshotPoint.contributions[key]}
+                    listData.push(obj)
+                });
+                this.listData = listData;
+
+
+
+                if (!res.data.data) {
+                    this.total = 1;
+                } else {
+                    this.total = 1;
+                }
             })
         }
     },
     created: function() {
-        console.log(this.$route.params.id);
+        // console.log(this.$route.params.id);
     },
     mounted: function() {
-         console.log(this.$route.query.hash);
+         // console.log(this.$route.query.hash);
         this.getData(this.$route.query.hash)
     },
     beforeRouteLeave(to, from, next) {
-
         next()
     }
 }
@@ -259,7 +275,7 @@ $width-mobile: 768px; // 移动端适配宽度
             width: 15%;
             text-align: left;
         }
-    
+
         td {
             font-size: 12px;
             height: 56px;

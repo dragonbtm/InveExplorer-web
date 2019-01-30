@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-clipboard="http://www.w3.org/1999/xhtml">
     <div class="index ">
         <div class="detail_block container">
             <div class="title">
@@ -6,7 +6,7 @@
                     <span class="word1 color2">交易</span>
                     <span class="word2 color3">{{pageData.hash}}</span>
                 </div>
-                <a href="javascript:;" class="copy" 
+                <a href="javascript:;" class="copy"
                 v-clipboard:copy="pageData.hash"
                 v-clipboard:success="onCopy">
                     <img src="@/assets/img/copy.png" alt="">
@@ -41,7 +41,7 @@
                 <div class="item">
                     <p class="conttitle color9"><span>手续费：</span></p>
                     <p class="text color3">
-                        {{pageData.fee}} 
+                        {{pageData.fee}}
                         <span> INVE</span>
                     </p>
                 </div>
@@ -88,7 +88,7 @@ export default {
         }
     },
     created: function() {
-        
+
     },
     mounted: function() {
         this.getData(this.$route.query.hash);
@@ -149,7 +149,7 @@ $width-mobile: 768px; // 移动端适配宽度
 
                 }
             }
-         
+
         }
     }
     .cont {

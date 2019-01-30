@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <span class="word">Copyright 2017-2018 inve.one All rights reserved</span>
+        <span class="word">Copyright 2018-2019 inve.one All rights reserved</span>
     </div>
 </template>
 <script>

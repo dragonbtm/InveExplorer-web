@@ -2,7 +2,7 @@
     <div class="message_block container">
         <div class="title clearfix">
             <img src="@/assets/img/message.png" alt="">
-            <span class="word color2">全网预览</span>
+            <span class="word color2">消息</span>
             <div class="select">
                 <a href="javascript:;" class="item" :class="{active:item.type==currentType}" v-for="item in types" @click="changeType(item.type)">
                     {{item.name}}
@@ -229,7 +229,7 @@ export default {
         }
     },
     created: function() {
-      
+
     },
     mounted: function() {
         this.getData();
