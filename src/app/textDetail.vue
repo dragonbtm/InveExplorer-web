@@ -3,40 +3,40 @@
         <div class="ttDetail_block container">
             <div class="title">
                 <div class="word">
-                    <span class="word1 color2">文本</span>
+                    <span class="word1 color2">{{$t('text.TEXT')}}</span>
                     <span class="word2 color3">#f5b975ea5d13c518d4087f3f85805f0f5115f586d5eb50dee3255b21f2fb20207</span>
                 </div>
-                <a href="javascript:;" class="copy" 
+                <a href="javascript:;" class="copy"
                         v-clipboard:copy="pageData.hash"
                         v-clipboard:success="onCopy">
                     <img src="@/assets/img/copy.png" alt="">
                     <div class="copymsg" v-show="isCopy">
-                        <span class="colorfff">已复制到剪贴板</span>
+                        <span class="colorfff">{{$t('last.Copied')}}</span>
                     </div>
                 </a>
             </div>
             <div class="cont">
                 <div class="item">
-                    <p class="conttitle color9"><span>状态：</span></p>
-                    <p class="text color3">已确定</p>
+                    <p class="conttitle color9"><span>{{$t('text.Status')}}：</span></p>
+                    <p class="text color3">{{$t('text.Confirmed')}}</p>
                 </div>
                 <div class="item">
-                    <p class="conttitle color9"><span>时间：</span></p>
+                    <p class="conttitle color9"><span>{{$t('snapshot.Time')}}：</span></p>
                     <p class="text color3">{{pageData.timestamp | fomatTime}} ({{pageData.timestamp | parseTime}})</p>
                 </div>
                 <div class="item">
-                    <p class="conttitle color9"><span>发送人：</span></p>
+                    <p class="conttitle color9"><span>{{$t('text.From')}}：</span></p>
                     <p class="text color3">{{pageData.fromAddress}}</p>
                 </div>
                 <div class="item">
-                    <p class="conttitle color9"><span>接收人：</span></p>
+                    <p class="conttitle color9"><span>{{$t('text.To')}}：</span></p>
                     <p class="text color3">{{pageData.toAddress}}</p>
                 </div>
                 <div class="item">
-                    <p class="conttitle color9"><span>文本内容：</span></p>
+                    <p class="conttitle color9"><span>{{$t('text.Text')}}：</span></p>
                     <p class="text color3">{{pageData.context}}</p>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@ export default {
         }
     },
     created: function() {
-      
+
     },
     mounted: function() {
         this.getData(this.$route.query.hash);

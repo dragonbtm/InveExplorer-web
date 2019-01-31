@@ -1,12 +1,12 @@
 <template>
     <ul class="pagenation">
-        <li class="pre" @click="goPre()" :class="{gray:current==1}">上一页</li>
+        <li class="pre" @click="goPre()" :class="{gray:current==1}">{{$t('message.Previous')}}</li>
         <li class="page" v-show="sfont" @click="goPage(1)">1</li>
         <span v-show="sfont">...</span>
         <li class="page" v-for="(item,index) in pages" :key="item" @click="goPage(item)" :class="{selected:current==item}">{{item}}</li>
         <span v-show="efont">...</span>
         <li class="page" v-show="efont" @click="goPage(total)" >{{total}}</li>
-        <li class="next" @click="goNext()" :class="{gray:current==total}">下一页</li>
+        <li class="next" @click="goNext()" :class="{gray:current==total}">{{$t('message.Next')}}</li>
     </ul>
 </template>
 <script>
@@ -39,7 +39,7 @@ export default {
                     pageArr.push(left);
                     left++;
                 }
-                
+
                 return pageArr;
             }
 
@@ -56,7 +56,7 @@ export default {
             }
 
             if(this.total>7 && this.current>(this.total-5)){
-               
+
                 this.sfont = true
                 this.efont = false
                 left = this.total -5
@@ -83,21 +83,21 @@ export default {
                 this.current = param
                 this.$emit('changgPage',param)
             }
-            
+
         },
         goPre: function(){
             if(this.current>1){
                 this.current--
                 this.$emit('changgPage',this.current)
             }
-       
+
         },
         goNext: function(){
             if(this.current < this.total){
                 this.current++
                 this.$emit('changgPage',this.current)
             }
-           
+
         }
     },
     created: function() {

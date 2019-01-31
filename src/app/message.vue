@@ -2,10 +2,10 @@
     <div class="message_block container">
         <div class="title clearfix">
             <img src="@/assets/img/message.png" alt="">
-            <span class="word color2">消息</span>
+            <span class="word color2">{{$t('message.Message')}}</span>
             <div class="select">
                 <a href="javascript:;" class="item" :class="{active:item.type==currentType}" v-for="item in types" @click="changeType(item.type)">
-                    {{item.name}}
+                    {{$t(item.name)}}
                 </a>
             </div>
         </div>
@@ -20,11 +20,11 @@
                             </div>
                             <div class="sub clearfix">
                                 <div class="subitem left">
-                                    <span class="color9">发送人：</span>
+                                    <span class="color9">{{$t('message.From')}}：</span>
                                     <a href="javascript:;" class="color306" @click="goToAddress(unit.fromAddress)">{{unit.fromAddress}}</a>
                                 </div>
                                 <div class="subitem right">
-                                    <span class="color9">接受人：</span>
+                                    <span class="color9">{{$t('message.To')}}：</span>
                                     <a href="javascript:;" class="color306" @click="goToAddress(unit.toAddress)">{{unit.toAddress}}</a>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                     <span>{{unit.timestamp | fomatTime}}</span>
                                 </div>
                                 <div class="money">
-                                    <span class="color9 s">交易金额：</span>
+                                    <span class="color9 s">{{$t('message.Amount')}}：</span>
                                     <span>{{unit.amount / 1e+18}} </span>
                                     <span class="color9 s">INVE</span>
                                 </div>
@@ -52,7 +52,7 @@
                             </div>
                             <div class="sub clearfix">
                                 <div class="subitem left">
-                                    <span class="color9">合约内容：</span>
+                                    <span class="color9">{{$t('message.ContractContent')}}：</span>
                                     <span>{{unit.data}}</span>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="sub clearfix">
                                 <div class="subitem left">
-                                    <span class="color9">文本内容：</span>
+                                    <span class="color9">{{$t('message.ContractContent')}}：</span>
                                     <span>{{unit.context}}</span>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                             </div>
                             <div class="sub clearfix">
                                 <div class="subitem left">
-                                    <span class="color9">快照版本：</span>
+                                    <span class="color9">{{$t('message.SnapshotVersion')}}：</span>
                                     <span>{{unit.snapVersion}}</span>
                                 </div>
                             </div>
@@ -128,23 +128,23 @@ export default {
     data: function() {
         return {
             types: [{
-                    name: '全部',
+                    name: 'message.All',
                     type: 0
                 },
                 {
-                    name: '交易',
+                    name: 'message.Transaction',
                     type: 1
                 },
                 {
-                    name: '合约',
+                    name: 'message.Contract',
                     type: 2
                 },
                 {
-                    name: '文本',
+                    name: 'message.Text',
                     type: 4
                 },
                 {
-                    name: '快照',
+                    name: 'message.Snapshot',
                     type: 3
                 }
             ],
@@ -179,7 +179,6 @@ export default {
                 } else {
                     this.total = res.data.page.totalPage;
                 }
-
             })
         },
         xunhuan() {

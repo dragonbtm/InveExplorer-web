@@ -2,7 +2,7 @@ import axios from 'axios'
 import Vue from 'vue'
 // import store from '../store/index.js'
 
-let baseURL = 'http://localhost:10081/v1/node/'; //测试
+let baseURL = 'http://192.168.5.149:10081/v1/node/'; //测试
 // let baseURL = 'https://www.chainfin.one/linker/'
 
 axios.defaults.baseURL = baseURL; //测试

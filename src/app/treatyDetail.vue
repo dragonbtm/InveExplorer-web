@@ -3,36 +3,36 @@
         <div class="ttDetail_block container">
             <div class="title">
                 <div class="word">
-                    <span class="word1 color2">合约</span>
+                    <span class="word1 color2">{{$t('contact.CONTACT')}}</span>
                     <span class="word2 color3">#f5b975ea5d13c518d4087f3f85805f0f5115f586d5eb50dee3255b21f2fb20207</span>
                 </div>
-                <a href="javascript:;" class="copy" 
+                <a href="javascript:;" class="copy"
                         v-clipboard:copy="pageData.hash"
                         v-clipboard:success="onCopy">
                     <img src="@/assets/img/copy.png" alt="">
                     <div class="copymsg" v-show="isCopy">
-                        <span class="colorfff">已复制到剪贴板</span>
+                        <span class="colorfff">{{$t('last.Copied')}}</span>
                     </div>
                 </a>
             </div>
             <div class="cont">
                 <div class="item">
-                    <p class="conttitle color9"><span>状态：</span></p>
-                    <p class="text color3">已确定</p>
+                    <p class="conttitle color9"><span>{{$t('contact.Status')}}：</span></p>
+                    <p class="text color3">{{$t('contact.Confirmed')}}</p>
                 </div>
                 <div class="item">
-                    <p class="conttitle color9"><span>时间：</span></p>
+                    <p class="conttitle color9"><span>{{$t('snapshot.Time')}}：</span></p>
                     <p class="text color3">16 secs ago (2019/1/12 2:36:59)</p>
                 </div>
                 <div class="item">
-                    <p class="conttitle color9"><span>发送人：</span></p>
+                    <p class="conttitle color9"><span>{{$t('snapshot.From')}}：</span></p>
                     <p class="text color3">TFGyUt7BWRDdNHPvMkYJfXDzd5g5mZEpss</p>
                 </div>
                 <div class="item">
-                    <p class="conttitle color9"><span>合约内容：</span></p>
+                    <p class="conttitle color9"><span>{{$t('snapshot.To')}}：</span></p>
                     <p class="text color3">TFGyUt7BWRDdNHPvMkYJfXDzd5g5mZEpss</p>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@ export default {
         }
     },
     created: function() {
-        
+
     },
     mounted: function() {
         this.getData(this.$route.query.hash);

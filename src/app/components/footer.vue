@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <span class="word">Copyright 2018-2019 inve.one All rights reserved</span>
+        <span class="word">{{$t('message.Copyright')}}</span>
     </div>
 </template>
 <script>
