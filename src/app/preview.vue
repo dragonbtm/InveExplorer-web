@@ -3,7 +3,7 @@
         <div class="title ">
             <img src="@/assets/img/preview.png" alt="">
             <span class="word color2">{{$t('preview.title')}}</span>
-            <span class="subword colorA8B">{{$t('preview.version')}}:5f38e</span>
+            <span class="subword colorA8B"><!--{{$t('preview.version')}}:5f38e--></span>
         </div>
         <div class="cont">
             <div class="">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="item w20 left">
                     <div class="number color3">{{pageData.messageTotal | parseNumber}}</div>
-                    <div class="subword colorA8B">{{$t('preview.message')}}</div>
+                    <div class="subword colorA8B">{{$t('preview.message') | 0}}</div>
                 </div>
                 <div class="item w20 left">
                     <div class="number color3">{{pageData.messages.tps | parseNumber}}</div>
@@ -60,7 +60,7 @@ export default {
     },
     mounted: function() {
         this.getData();
-        
+
     },
     beforeRouteLeave(to, from, next) {
         next()
@@ -98,7 +98,7 @@ $width-mobile: 768px; // 移动端适配宽度
         }
     }
     .cont {
-        
+
         padding-right: 15px;
         padding-left: 15px;
         .item {

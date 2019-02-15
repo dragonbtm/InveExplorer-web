@@ -2,7 +2,7 @@ import axios from 'axios'
 import Vue from 'vue'
 // import store from '../store/index.js'
 
-// let baseURL = 'http://192.168.5.149:10081/v1/node/'; //测试
+// let baseURL = 'http://172.17.2.36:10081/v1/node/'; //测试
 let baseURL = 'http://hub.inve.one:10081/v1/node/'
 
 axios.defaults.baseURL = baseURL; //测试
