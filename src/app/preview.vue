@@ -13,7 +13,7 @@
                 </div>
                 <div class="item w20 left">
                     <div class="number color3">{{pageData.messageTotal | parseNumber}}</div>
-                    <div class="subword colorA8B">{{$t('preview.message') | 0}}</div>
+                    <div class="subword colorA8B">{{$t('preview.message')}}</div>
                 </div>
                 <div class="item w20 left">
                     <div class="number color3">{{pageData.messages.tps | parseNumber}}</div>
