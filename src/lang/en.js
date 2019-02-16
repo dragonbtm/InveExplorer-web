@@ -1,20 +1,20 @@
 module.exports = {
   header:{
-    Search:"Search",
-    SearchMore:"Search Address, Transaction, Contract, Text, Snapshot"
+    Search:"GO",
+    SearchMore:"Search Address,Transaction,Contract,Text,Snapshot"
   },
   preview:{
-    title:"Full network preview",
+    title:"Summary",
     version:"Protocol version",
-    account:"Accounts number",
-    message:"Message number",
+    account:"Total Accounts",
+    message:"Messages",
     tps:"TPS",
-    node:"Node number",
+    node:"Total Nodes",
     days:"Running days"
   },
   charts:{
-    titleone:"Message number in the past 14 days",
-    titletwo:"Accounts number in the past 14 days"
+    titleone:"14 days Message History",
+    titletwo:"14 days Account History"
   },
   message: {
     Message: "Message",

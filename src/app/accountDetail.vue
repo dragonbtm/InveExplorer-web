@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-clipboard="http://www.w3.org/1999/xhtml">
     <div class="index ">
         <div class="accountDetail_block container">
             <div class="headbox">
@@ -18,7 +18,7 @@
                     <div class="item">
                         <p class="conttitle color9"><span>{{$t('last.Balance')}}：</span></p>
                         <p class="text color3">
-                            {{money}}
+                            {{money / 1e+18}}
                             <span> INVE</span>
                         </p>
                     </div>
@@ -44,10 +44,10 @@
                 <tbody>
                 <tr v-for="item in listData">
                     <td class="color2">{{item.hash}}</td>
-                    <td class="colorA8B">{{item.updatetime | fomatTime}}</td>
-                    <td><a href="javascript:;" class="color306">{{item.fromaddress}}</a></td>
-                    <td><a href="javascript:;" class="color306">L0678L067</a></td>
-                    <td>50,000.00 <span> INVE</span></td>
+                    <td class="colorA8B">{{item.updateTime | fomatTime}}</td>
+                    <td><a href="javascript:;" class="color306">{{item.fromAddress}}</a></td>
+                    <td><a href="javascript:;" class="color306">{{item.toAddress}}</a></td>
+                    <td>{{item.amount/100000000000000000}} <span> INVE</span></td>
                 </tr>
                 </tbody>
             </table>
@@ -95,10 +95,10 @@
                 formdata.append("limit", this.pageSize);
                 formdata.append("page", this.page);
                 this.axios.post('messagesinfo', formdata).then((res) => {
-                    console.log(res)
+                    console.log(res.data)
                     if (res.data.code == 0) {
                         this.money = res.data.total;
-                        this.msgcount = res.data.address;
+                        this.msgcount = res.data.msgTotal;
                         this.listData = res.data.page.list;
                         this.total = res.data.page.totalCount;
                     }

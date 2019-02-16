@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-clipboard="http://www.w3.org/1999/xhtml">
     <div class="index ">
         <div class="ttDetail_block container">
             <div class="title">

@@ -35,13 +35,13 @@
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('transaction.Amount')}}：</span></p>
                     <p class="text color3">
-                        {{pageData.amount}} <span> INVE</span>
+                        {{pageData.amount / 1e+18}} <span> INVE</span>
                     </p>
                 </div>
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('transaction.Fee')}}：</span></p>
                     <p class="text color3">
-                        {{pageData.fee}}
+                        {{pageData.fee / 1e+18}}
                         <span> INVE</span>
                     </p>
                 </div>
