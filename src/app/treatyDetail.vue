@@ -4,7 +4,7 @@
             <div class="title">
                 <div class="word">
                     <span class="word1 color2">{{$t('contact.CONTACT')}}</span>
-                    <span class="word2 color3">#f5b975ea5d13c518d4087f3f85805f0f5115f586d5eb50dee3255b21f2fb20207</span>
+                    <span class="word2 color3">#{{pageData.hash}}</span>
                 </div>
                 <a href="javascript:;" class="copy"
                         v-clipboard:copy="pageData.hash"
@@ -22,15 +22,15 @@
                 </div>
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('snapshot.Time')}}：</span></p>
-                    <p class="text color3">16 secs ago (2019/1/12 2:36:59)</p>
+                    <p class="text color3">{{pageData.timestamp | fomatTime}} ({{pageData.timestamp | parseTime}})</p>
                 </div>
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('snapshot.From')}}：</span></p>
-                    <p class="text color3">TFGyUt7BWRDdNHPvMkYJfXDzd5g5mZEpss</p>
+                    <a href="javascript:;" class="color3" @click="goToAddress(pageData.fromAddress)">{{pageData.fromAddress}}</a>
                 </div>
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('snapshot.To')}}：</span></p>
-                    <p class="text color3">TFGyUt7BWRDdNHPvMkYJfXDzd5g5mZEpss</p>
+                    <a href="javascript:;" class="color3" @click="goToAddress(pageData.toAddress)">{{pageData.toAddress}}</a>
                 </div>
 
             </div>

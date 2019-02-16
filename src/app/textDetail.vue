@@ -1,10 +1,10 @@
-<template>
+<template xmlns:v-clipboard="http://www.w3.org/1999/xhtml">
     <div class="index ">
         <div class="ttDetail_block container">
             <div class="title">
                 <div class="word">
                     <span class="word1 color2">{{$t('text.TEXT')}}</span>
-                    <span class="word2 color3">#f5b975ea5d13c518d4087f3f85805f0f5115f586d5eb50dee3255b21f2fb20207</span>
+                    <span class="word2 color3">#{{pageData.hash}}</span>
                 </div>
                 <a href="javascript:;" class="copy"
                         v-clipboard:copy="pageData.hash"
@@ -26,11 +26,15 @@
                 </div>
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('text.From')}}：</span></p>
-                    <p class="text color3">{{pageData.fromAddress}}</p>
+                    <p class="text color3">
+                        <a href="javascript:;" class="color3" @click="goToAddress(pageData.fromAddress)">{{pageData.fromAddress}}</a>
+                    </p>
                 </div>
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('text.To')}}：</span></p>
-                    <p class="text color3">{{pageData.toAddress}}</p>
+                    <p class="text color3">
+                        <a href="javascript:;" class="color3" @click="goToAddress(pageData.toAddress)">{{pageData.toAddress}}</a>
+                    </p>
                 </div>
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('text.Text')}}：</span></p>
@@ -64,12 +68,56 @@ export default {
             let formdata = new FormData();
             formdata.append("hash", hash);
             this.axios.post('messagesinfo', formdata).then((res) => {
-                console.log(res)
+                console.log(JSON.parse(res.data.data.message));
+
                 // this.dataList = res.data.page.list;
                 if (res.data.code == 0) {
                    this.pageData = res.data.data;
+                    this.pageData.context = JSON.parse(res.data.data.message).context;
                 }
 
+            })
+        },
+        goToDetail(type, hash) {
+            if (type == 1) {
+                this.$router.push({
+                    path: "/deal",
+                    query: {
+                        hash: hash
+                    }
+                })
+            }
+            if (type == 2) {
+                this.$router.push({
+                    path: "/treaty",
+                    query: {
+                        hash: hash
+                    }
+                })
+            }
+            if (type == 3) {
+                this.$router.push({
+                    path: "/snapshot",
+                    query: {
+                        hash: hash
+                    }
+                })
+            }
+            if (type == 4) {
+                this.$router.push({
+                    path: "/text",
+                    query: {
+                        hash: hash
+                    }
+                })
+            }
+        },
+        goToAddress(addr){
+            this.$router.push({
+                path: "/account",
+                query: {
+                    addr: addr
+                }
             })
         }
     },

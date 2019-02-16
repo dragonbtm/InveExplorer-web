@@ -26,11 +26,15 @@
                 </div>
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('transaction.From')}}：</span></p>
-                    <p class="text color3">{{pageData.fromAddress}}</p>
+                    <p class="text color3">
+                        <a href="javascript:;" class="color3" @click="goToAddress(pageData.fromAddress)">{{pageData.fromAddress}}</a>
+                    </p>
                 </div>
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('transaction.To')}}：</span></p>
-                    <p class="text color3">{{pageData.toAddress}}</p>
+                    <p class="text color3">
+                        <a href="javascript:;" class="color3" @click="goToAddress(pageData.toAddress)">{{pageData.toAddress}}</a>
+                    </p>
                 </div>
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('transaction.Amount')}}：</span></p>
@@ -84,6 +88,48 @@
                         this.pageData = res.data.data;
                     }
 
+                })
+            },
+            goToDetail(type, hash) {
+                if (type == 1) {
+                    this.$router.push({
+                        path: "/deal",
+                        query: {
+                            hash: hash
+                        }
+                    })
+                }
+                if (type == 2) {
+                    this.$router.push({
+                        path: "/treaty",
+                        query: {
+                            hash: hash
+                        }
+                    })
+                }
+                if (type == 3) {
+                    this.$router.push({
+                        path: "/snapshot",
+                        query: {
+                            hash: hash
+                        }
+                    })
+                }
+                if (type == 4) {
+                    this.$router.push({
+                        path: "/text",
+                        query: {
+                            hash: hash
+                        }
+                    })
+                }
+            },
+            goToAddress(addr){
+                this.$router.push({
+                    path: "/account",
+                    query: {
+                        addr: addr
+                    }
                 })
             }
         },

@@ -11,9 +11,9 @@
                        v-clipboard:copy="pageData.hash"
                        v-clipboard:success="onCopy">
                         <img src="@/assets/img/copy.png" alt="">
-                        <div class="copymsg" v-show="isCopy">
-                            <span class="colorfff">{{$t('last.Copied')}}</span>
-                        </div>
+                        <!--<div class="copymsg" v-show="isCopy">-->
+                            <!--<span class="colorfff">{{$t('last.Copied')}}</span>-->
+                        <!--</div>-->
                     </a>
                 </div>
                 <div class="cont">
@@ -27,8 +27,10 @@
                             parseTime}})</p>
                     </div>
                     <div class="item">
-                        <p class="conttitle color9"><span>{{$t('snapshot.From')}}：</span></p>
-                        <p class="text color3">{{pageData.fromAddress}}</p>
+                        <p class="conttitle color9" ><span>{{$t('snapshot.From')}}：</span></p>
+                       <p class="text color3" >
+                           <a href="javascript:;" class="color3" @click="goToAddress(pageData.fromAddress)">{{pageData.fromAddress}}</a>
+                       </p>
                     </div>
                     <div class="item">
                         <p class="conttitle color9"><span>{{$t('snapshot.Version')}}</span></p>
@@ -37,8 +39,18 @@
                         </p>
                     </div>
                     <div class="item">
-                        <p class="conttitle color9"><span>{{$t('snapshot.Previous')}}：</span></p>
-                        <p class="text color3">{{messageData.preHash}}</p>
+                        <p class="conttitle color9"><span> {{$t('snapshot.Previous')}}：</span></p>
+                        <p class="text color3">
+                            <a href="javascript:;" class="color3" @click="goToDetail(3,messageData.preHash)">{{messageData.preHash}}</a>
+                            <a href="javascript:;" class="copy"
+                               v-clipboard:copy="messageData.preHash"
+                               v-clipboard:success="onCopy">
+                                <img src="@/assets/img/copy.png" alt="">
+                                <!--<div class="copymsg" v-show="isCopy2">-->
+                                    <!--<span class="colorfff">{{$t('last.Copied')}}</span>-->
+                                <!--</div>-->
+                            </a>
+                        </p>
                     </div>
                     <div class="item">
                         <p class="conttitle color9"><span>{{$t('snapshot.Current')}}：</span></p>
@@ -69,16 +81,16 @@
             </div>
             <table class="table-hover" border="1">
                 <tr class="tablehead color9">
-                    <th>{{$t('snapshot.To')}}</th>
                     <th>{{$t('snapshot.Time')}}</th>
+                    <th>{{$t('snapshot.To')}}</th>
                     <th>{{$t('snapshot.Amount')}}</th>
                 </tr>
                 <tbody>
                 <tr v-for="item in listData">
-                    <td class="colorA8B">13 mins ago</td>
-                    <td><a href="javascript:;" class="color306">{{item.name}}}</a></td>
+                    <td class="colorA8B">{{pageData.timestamp | fomatTime}}</td>
+                    <td><a href="javascript:;" class="color306"><a href="javascript:;" class="color3" @click="goToAddress(item.name)">{{item.name}}}</a></a></td>
                     <td>
-                        {{item.value}} <span> atom</span>
+                        {{item.value / 1e+18}} <span> INVE</span>
                     </td>
                 </tr>
                 </tbody>
@@ -95,7 +107,8 @@
                 messageData: {},
                 snapshotPoint: {},
                 isCopy: false,
-                isShowing: null
+                isShowing: null,
+                isCopy2: false
             }
         },
         methods: {
@@ -114,7 +127,7 @@
 
                     let messageData = JSON.parse(res.data.data.message);
                     let listData = [];
-
+                    // console.log(messageData)
                     this.pageData = res.data.data;
                     this.messageData = messageData;
                     this.snapshotPoint = messageData.snapshotPoint;
@@ -134,6 +147,49 @@
                         this.total = 1;
                     }
                 })
+            },
+            goToDetail(type, hash) {
+                console.log(123);
+                if (type == 1) {
+                    this.$router.push({
+                        path: "/deal",
+                        query: {
+                            hash: hash
+                        }
+                    })
+                }
+                if (type == 2) {
+                    this.$router.push({
+                        path: "/treaty",
+                        query: {
+                            hash: hash
+                        }
+                    })
+                }
+                if (type == 3) {
+                    this.$router.push({
+                        //path: "/snapshot",
+                        query: {
+                            hash: hash
+                        }
+                    })
+                }
+                if (type == 4) {
+                    this.$router.push({
+                        path: "/text",
+                        query: {
+                            hash: hash
+                        }
+                    })
+                }
+            },
+            goToAddress(addr){
+                this.$router.push({
+                    path: "/account",
+                    query: {
+                        addr: addr
+                    }
+                })
             }
         },
         created: function () {
@@ -146,6 +202,10 @@
         beforeRouteLeave(to, from, next) {
             next()
         }
+        // ,
+        // watch: {
+        //     "$route": this.getData('32Pfu7CSXFXfWXClRiiRafVxOihQM%2Bi%2B7c28XNyyCgEywF9SVqJCy7Yojo%2FBxqDZX6kJVhSzx21RcO0AY%2FHZ%2FnPQ%3D%3D')
+        // }
     }
 </script>
 <style scoped lang="scss">
