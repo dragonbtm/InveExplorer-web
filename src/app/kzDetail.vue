@@ -88,7 +88,7 @@
                 <tbody>
                 <tr v-for="item in listData">
                     <td class="colorA8B">{{pageData.timestamp | fomatTime}}</td>
-                    <td><a href="javascript:;" class="color306"><a href="javascript:;" class="color3" @click="goToAddress(item.name)">{{item.name}}}</a></a></td>
+                    <td><a href="javascript:;" class="color306"><a href="javascript:;" class="color3" @click="goToAddress(item.name)">{{item.name}}</a></a></td>
                     <td>
                         {{item.value | moneyFilter}} <span> INVE</span>
                     </td>
