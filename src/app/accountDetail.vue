@@ -18,7 +18,7 @@
                     <div class="item">
                         <p class="conttitle color9"><span>{{$t('last.Balance')}}：</span></p>
                         <p class="text color3">
-                            {{money / 1e+18}}
+                            {{money  | moneyFilter}}
                             <span> INVE</span>
                         </p>
                     </div>
@@ -43,11 +43,13 @@
                 </tr>
                 <tbody>
                 <tr v-for="item in listData">
-                    <td class="color2">{{item.hash}}</td>
+                    <td class="color2">
+                        <a href="javascript:;" @click="goToDetail(1,item.hash)">{{item.hash}}</a>
+                    </td>
                     <td class="colorA8B">{{item.updateTime | fomatTime}}</td>
-                    <td><a href="javascript:;" class="color306">{{item.fromAddress}}</a></td>
-                    <td><a href="javascript:;" class="color306">{{item.toAddress}}</a></td>
-                    <td>{{item.amount/100000000000000000}} <span> INVE</span></td>
+                    <td><a href="javascript:;" @click="goToAddress(item.fromAddress)" class="color306">{{item.fromAddress}}</a></td>
+                    <td><a href="javascript:;" @click="goToAddress(item.toAddress)" class="color306">{{item.toAddress}}</a></td>
+                    <td>{{item.amount | moneyFilter}} <span> INVE</span></td>
                 </tr>
                 </tbody>
             </table>
@@ -104,6 +106,50 @@
                     }
 
                 })
+            },
+            goToDetail(type, hash) {
+                if (type == 1) {
+                    this.$router.push({
+                        path: "/deal",
+                        query: {
+                            hash: hash
+                        }
+                    })
+                }
+                if (type == 2) {
+                    this.$router.push({
+                        path: "/treaty",
+                        query: {
+                            hash: hash
+                        }
+                    })
+                }
+                if (type == 3) {
+                    this.$router.push({
+                        path: "/snapshot",
+                        query: {
+                            hash: hash
+                        }
+                    })
+                }
+                if (type == 4) {
+                    this.$router.push({
+                        path: "/text",
+                        query: {
+                            hash: hash
+                        }
+                    })
+                }
+            },
+            goToAddress(addr){
+                this.$router.push({
+                    path: "/account",
+                    query: {
+                        addr: addr
+                    }
+                })
+                this.addr=addr
+                this.getData(addr)
             }
         },
         created: function () {

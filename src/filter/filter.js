@@ -80,3 +80,14 @@ Vue.filter('parseNumber', function(num) {
         return 0;
     }
 });
+
+
+// 金額过滤
+
+Vue.filter('moneyFilter', function(money) {
+    if (money >0){
+       return money / 1e+18
+    }else  {
+        return 0;
+    }
+});

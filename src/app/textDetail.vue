@@ -46,6 +46,7 @@
     </div>
 </template>
 <script>
+    let Base64 = require('js-base64').Base64;
 export default {
     data: function() {
         return {
@@ -69,11 +70,11 @@ export default {
             formdata.append("hash", hash);
             this.axios.post('messagesinfo', formdata).then((res) => {
                 console.log(JSON.parse(res.data.data.message));
-
+                let data = Base64.decode(JSON.parse(res.data.data.message).context).toString();
                 // this.dataList = res.data.page.list;
                 if (res.data.code == 0) {
                    this.pageData = res.data.data;
-                    this.pageData.context = JSON.parse(res.data.data.message).context;
+                    this.pageData.context = data;
                 }
 
             })

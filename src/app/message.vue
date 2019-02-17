@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="money">
                                     <span class="color9 s">{{$t('message.Amount')}}：</span>
-                                    <span>{{unit.amount / 1e+18}} </span>
+                                    <span>{{unit.amount | moneyFilter}} </span>
                                     <span class="color9 s">INVE</span>
                                 </div>
                             </div>

@@ -11,9 +11,9 @@
                        v-clipboard:copy="pageData.hash"
                        v-clipboard:success="onCopy">
                         <img src="@/assets/img/copy.png" alt="">
-                        <!--<div class="copymsg" v-show="isCopy">-->
-                            <!--<span class="colorfff">{{$t('last.Copied')}}</span>-->
-                        <!--</div>-->
+                        <div class="copymsg" v-show="isCopy">
+                            <span class="colorfff">{{$t('last.Copied')}}</span>
+                        </div>
                     </a>
                 </div>
                 <div class="cont">
@@ -42,14 +42,14 @@
                         <p class="conttitle color9"><span> {{$t('snapshot.Previous')}}：</span></p>
                         <p class="text color3">
                             <a href="javascript:;" class="color3" @click="goToDetail(3,messageData.preHash)">{{messageData.preHash}}</a>
-                            <a href="javascript:;" class="copy"
-                               v-clipboard:copy="messageData.preHash"
-                               v-clipboard:success="onCopy">
-                                <img src="@/assets/img/copy.png" alt="">
+                            <!--<a href="javascript:;" class="copy"-->
+                               <!--v-clipboard:copy="messageData.preHash"-->
+                               <!--v-clipboard:success="onCopy2">-->
+                                <!--<img src="@/assets/img/copy.png" alt="">-->
                                 <!--<div class="copymsg" v-show="isCopy2">-->
                                     <!--<span class="colorfff">{{$t('last.Copied')}}</span>-->
                                 <!--</div>-->
-                            </a>
+                            <!--</a>-->
                         </p>
                     </div>
                     <div class="item">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="item">
                         <p class="conttitle color9"><span>{{$t('snapshot.TotalFee')}}：</span></p>
-                        <p class="text color3">{{snapshotPoint.totalFee/1e+18}} INVE</p>
+                        <p class="text color3">{{snapshotPoint.totalFee | moneyFilter}} INVE</p>
                     </div>
                     <div class="item">
                         <p class="conttitle color9"><span>{{$t('snapshot.RewardRatio')}}：</span></p>
@@ -90,7 +90,7 @@
                     <td class="colorA8B">{{pageData.timestamp | fomatTime}}</td>
                     <td><a href="javascript:;" class="color306"><a href="javascript:;" class="color3" @click="goToAddress(item.name)">{{item.name}}}</a></a></td>
                     <td>
-                        {{item.value / 1e+18}} <span> INVE</span>
+                        {{item.value | moneyFilter}} <span> INVE</span>
                     </td>
                 </tr>
                 </tbody>
@@ -117,6 +117,13 @@
                 clearTimeout(this.isShowing);
                 this.isShowing = setTimeout(() => {
                     this.isCopy = false;
+                }, 1500)
+            },
+            onCopy2(e) {
+                this.isCopy = true;
+                clearTimeout(this.isShowing);
+                this.isShowing = setTimeout(() => {
+                    this.isCopy2 = false;
                 }, 1500)
             },
             getData(hash) {
@@ -168,11 +175,12 @@
                 }
                 if (type == 3) {
                     this.$router.push({
-                        //path: "/snapshot",
+                        path: "/snapshot",
                         query: {
                             hash: hash
                         }
                     })
+                    this.getData(hash)
                 }
                 if (type == 4) {
                     this.$router.push({
@@ -194,6 +202,7 @@
         },
         created: function () {
             // console.log(this.$route.params.id);
+            console.log('1111111')
         },
         mounted: function () {
             // console.log(this.$route.query.hash);
