@@ -165,7 +165,9 @@ export default {
             this.page = 1;
             this.getData(type);
         },
-        getData(type = 0) {
+        getData(type = this.currentType) {
+            console.log(this.page)
+            console.log(type)
             let formdata = new FormData();
             formdata.append("limit", this.pageSize);
             formdata.append("page", this.page);
