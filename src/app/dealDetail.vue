@@ -45,7 +45,7 @@
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('transaction.Fee')}}：</span></p>
                     <p class="text color3">
-                        {{pageData.fee | moneyFilter}}
+                        {{(pageData.fee * pageData.nrgPrice) | moneyFilter}}
                         <span> INVE</span>
                     </p>
                 </div>

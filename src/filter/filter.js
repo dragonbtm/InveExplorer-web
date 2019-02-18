@@ -1,4 +1,5 @@
 import Vue from "vue"
+import mathjs from "mathjs"
 // import i18n from "vue-i18n/e"
 
 
@@ -85,8 +86,37 @@ Vue.filter('parseNumber', function(num) {
 // 金額过滤
 
 Vue.filter('moneyFilter', function(money) {
+    function getShow(num){
+        if (num.length > 18){
+            let num1 = num.substring(0, num.length - 18);
+            let num2 = num.substring(num.length - 18);
+
+            num = num1 + '.' + num2;
+        } else {
+            let length = 18 - money;
+            let result = '0.';
+            for (let i=0; i<length; i++){
+                result += '0'
+            }
+            num = result + num;
+        }
+        let have = false;
+        if (num.indexOf('.') < 0)
+            return num;
+        let length = num.length;
+        for (let i = length - 1; i > 0; i--){
+            if (num[i] == 0 || num[i] == '.'){
+                num = num.substring(0, num.length - 1);
+            } else{
+                break;
+            }
+
+        }
+
+        return num;
+    }
     if (money >0){
-       return money / 1e+18
+       return getShow(money);
     }else  {
         return 0;
     }

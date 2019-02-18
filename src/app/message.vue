@@ -166,8 +166,6 @@ export default {
             this.getData(type);
         },
         getData(type = this.currentType) {
-            console.log(this.page)
-            console.log(type)
             let formdata = new FormData();
             formdata.append("limit", this.pageSize);
             formdata.append("page", this.page);
@@ -175,6 +173,7 @@ export default {
                 formdata.append("type", type);
             }
             this.axios.post('messageslist', formdata).then((res) => {
+                console.log(res.data.page.list)
                 this.dataList = res.data.page.list;
                 if (res.data.page.list.length == 0) {
                     this.total = 1;

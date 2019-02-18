@@ -81,8 +81,8 @@ module.exports = {
     },
     last: {
         AccountAddress: "  账户地址",
-        Balance: "余额：",
-        Message: "消息数量：",
+        Balance: "余额",
+        Message: "消息数量",
         TRANSACTION: "交易列表",
         Hash: "Hash值",
         Time: "时间",
