@@ -52,7 +52,7 @@
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('transaction.Remarks')}}：</span></p>
                     <p class="text color3">
-                        <span>{{$t('transaction.OptionalContent')}}</span>
+                        <span>{{pageData.remark}}</span>
                     </p>
                 </div>
             </div>
@@ -60,6 +60,7 @@
     </div>
 </template>
 <script>
+    let Base64 = require('js-base64').Base64;
     export default {
         data: function () {
             return {
@@ -85,7 +86,9 @@
                     // console.log(res)
                     // this.dataList = res.data.page.list;
                     if (res.data.code == 0) {
+                        let data2 = Base64.decode(res.data.data.remark).toString();
                         this.pageData = res.data.data;
+                        this.pageData.remark = data2;
                     }
 
                 })

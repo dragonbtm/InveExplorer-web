@@ -102,7 +102,7 @@
                         this.money = res.data.total;
                         this.msgcount = res.data.msgTotal;
                         this.listData = res.data.page.list;
-                        this.total = res.data.page.totalCount;
+                        this.total = res.data.page.totalPage;
                     }
 
                 })
