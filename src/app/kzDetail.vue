@@ -88,7 +88,11 @@
                 <tbody>
                 <tr v-for="item in listData">
                     <td class="colorA8B">{{pageData.timestamp | fomatTime}}</td>
-                    <td><a href="javascript:;" class="color306"><a href="javascript:;" class="color3" @click="goToAddress(item.name)">{{item.name}}</a></a></td>
+                    <td>
+                        <!--<a href="javascript:;" class="color3" @click="goToAddress(item.name)">-->
+                            {{item.name}}
+                        <!--</a>-->
+                    </td>
                     <td>
                         {{item.value | moneyFilter}} <span> INVE</span>
                     </td>
@@ -139,10 +143,21 @@
                     this.messageData = messageData;
                     this.snapshotPoint = messageData.snapshotPoint;
 
+                    console.log(messageData.snapshotPoint);
+                    let rewardRatio = messageData.snapshotPoint.rewardRatio;
+                    let totalFee = messageData.snapshotPoint.totalFee ? messageData.snapshotPoint.totalFee : 0;
+                    let contributionValue = 0;
+                    console.log(rewardRatio);
+                    console.log(totalFee);
 
                     Object.keys(messageData.snapshotPoint.contributions).forEach(function (key) {
-                        // console.log(key);
-                        let obj = {name: key, value: messageData.snapshotPoint.contributions[key]}
+                        contributionValue += messageData.snapshotPoint.contributions[key];
+                    });
+
+
+                    Object.keys(messageData.snapshotPoint.contributions).forEach(function (key) {
+                        // console.log(contributionValue);
+                        let obj = {name: key, value: rewardRatio * totalFee * messageData.snapshotPoint.contributions[key] / contributionValue}
                         listData.push(obj)
                     });
                     this.listData = listData;

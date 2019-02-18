@@ -72,9 +72,9 @@ module.exports = {
     Time: "Time",
     Previous: "Previous",
     Current: "Current",
-    SnapshotpPint: "SnapshotpPint",
-    TotalFee: "TotalFee",
-    RewardRatio: "RewardRatio",
+    SnapshotpPint: "Snapshot Pint",
+    TotalFee: "Total Fee",
+    RewardRatio: "Reward Ratio",
     REWARD: "REWARD",
     To: "To ",
     Amount: "Amount "
