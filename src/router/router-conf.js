@@ -55,7 +55,7 @@ const vueRouter = new Router({
 
 
 vueRouter.beforeEach(function(to, from, next) {
-    console.log(to.name)
+    // console.log(to.name)
     next()
 });
 

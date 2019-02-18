@@ -156,7 +156,6 @@
                 })
             },
             goToDetail(type, hash) {
-                console.log(123);
                 if (type == 1) {
                     this.$router.push({
                         path: "/deal",
@@ -202,7 +201,6 @@
         },
         created: function () {
             // console.log(this.$route.params.id);
-            console.log('1111111')
         },
         mounted: function () {
             // console.log(this.$route.query.hash);

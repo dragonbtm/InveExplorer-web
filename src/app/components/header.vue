@@ -41,7 +41,7 @@
                 }
             },
             changeLang() {
-                console.log(this.lang)
+                // console.log(this.lang)
                 if (this.lang == "zh-CN") {
                     this.$i18n.locale = "en";
                     localStorage.setItem("lang", 'en');
@@ -111,7 +111,7 @@
                     let formdataaddr = new FormData();
                     formdataaddr.append("address", this.searchValue);
                     this.axios.post('messagesinfo', formdataaddr).then((res) => {
-                        console.log(res)
+                        // console.log(res)
                         if (res.data.code == 0) {
                             if (res.data.page.list.length != 0) {
                                 this.selectType(5);

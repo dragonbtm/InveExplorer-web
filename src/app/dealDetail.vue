@@ -82,7 +82,7 @@
                 let formdata = new FormData();
                 formdata.append("hash", hash);
                 this.axios.post('messagesinfo', formdata).then((res) => {
-                    console.log(res)
+                    // console.log(res)
                     // this.dataList = res.data.page.list;
                     if (res.data.code == 0) {
                         this.pageData = res.data.data;

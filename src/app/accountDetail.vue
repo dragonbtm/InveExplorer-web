@@ -97,7 +97,7 @@
                 formdata.append("limit", this.pageSize);
                 formdata.append("page", this.page);
                 this.axios.post('messagesinfo', formdata).then((res) => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     if (res.data.code == 0) {
                         this.money = res.data.total;
                         this.msgcount = res.data.msgTotal;

@@ -173,7 +173,7 @@ export default {
                 formdata.append("type", type);
             }
             this.axios.post('messageslist', formdata).then((res) => {
-                console.log(res.data.page.list)
+                // console.log(res.data.page.list)
                 this.dataList = res.data.page.list;
                 if (res.data.page.list.length == 0) {
                     this.total = 1;

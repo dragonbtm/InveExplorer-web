@@ -69,7 +69,7 @@ export default {
             let formdata = new FormData();
             formdata.append("hash", hash);
             this.axios.post('messagesinfo', formdata).then((res) => {
-                console.log(JSON.parse(res.data.data.message));
+                // console.log(JSON.parse(res.data.data.message));
                 let data = Base64.decode(JSON.parse(res.data.data.message).context).toString();
                 // this.dataList = res.data.page.list;
                 if (res.data.code == 0) {
