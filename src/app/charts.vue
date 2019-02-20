@@ -38,14 +38,14 @@ export default {
                 let optionjson = JSON.stringify(ecOption.exchangeOption);
                 this.optionOne = JSON.parse(optionjson);
                 this.optionTwo = JSON.parse(optionjson);
-                
+
                 this.optionOne.xAxis.data = this.createDateArray();
                 this.optionTwo.xAxis.data = this.createDateArray();
 
-                
+
                 this.getListData().then(res=>{
-                    this.optionOne.series[0].data=res.data.accounts;
-                    this.optionTwo.series[0].data=res.data.messages;
+                    this.optionOne.series[0].data=res.data.messages;
+                    this.optionTwo.series[0].data=res.data.accounts;
                     this.chartOne.setOption(this.optionOne);
                     this.chartTwo.setOption(this.optionTwo);
                 })
@@ -53,7 +53,7 @@ export default {
                 //     this.optionOne.series[0].data=[111,222,333,444,555,66,28];
                 //     this.chartOne.setOption(this.optionOne);
                 // },2000)
-                
+
             })
         },
 
