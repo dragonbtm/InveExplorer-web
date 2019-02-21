@@ -53,7 +53,7 @@ Vue.filter('fromToday', function(valueTime) {
     let tempDate = new Date(parseInt(valueTime));
     let today = new Date();
     let days = today.getTime() - tempDate.getTime();
-    return parseInt(days/(1000*60*60*24));
+    return parseInt(Math.ceil(days/(1000*60*60*24)));
 });
 
 Vue.filter('parseTime', function(valueTime) {
@@ -105,14 +105,16 @@ Vue.filter('moneyFilter', function(money) {
             return num;
         let length = num.length;
         for (let i = length - 1; i > 0; i--){
-            if (num[i] == 0 || num[i] == '.'){
+            if (num[i] == 0){
                 num = num.substring(0, num.length - 1);
+            }else if ( num[i] == '.'){
+                num = num.substring(0, num.length - 1);
+                break;
             } else{
                 break;
             }
 
         }
-
         return num;
     }
     if (money >0){

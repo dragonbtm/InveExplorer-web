@@ -87,7 +87,7 @@
                 </tr>
                 <tbody>
                 <tr v-for="item in listData">
-                    <td class="colorA8B">{{pageData.timestamp | fomatTime}}</td>
+                    <td class="colorA8B">{{pageData.updateTime | fomatTime}}</td>
                     <td>
                         <!--<a href="javascript:;" class="color3" @click="goToAddress(item.name)">-->
                             {{item.name}}

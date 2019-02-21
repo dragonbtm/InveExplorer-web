@@ -18,7 +18,7 @@
             <div class="cont">
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('transaction.Status')}}：</span></p>
-                    <p class="text color3">{{$t('transaction.Confirmed')}}</p>
+                    <p class="text color3">{{pageData.status ? $t('transaction.Confirmed') : $t('transaction.Unconfirmed')}}</p>
                 </div>
                 <div class="item">
                     <p class="conttitle color9"><span>{{$t('transaction.Time')}}：</span></p>
@@ -90,6 +90,8 @@
                         this.pageData = res.data.data;
                         this.pageData.remark = data2;
                     }
+
+                    this.pageData.status = res.data.data.isStable && res.data.data.isValid ? true : false;
 
                 })
             },

@@ -36,7 +36,7 @@ module.exports = {
         TRANSACTION: "交易",
         Status: "状态",
         Confirmed: "已确认",
-        Unconfirmed: "未确认",
+        Unconfirmed: "无效",
         Time: "时间",
         From: "发送人",
         To: "接收人",
